@@ -41,4 +41,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    // protected $appends = [
+    //     'parsed_data'
+    // ];
+
+    // public function getParsedDataAttribute()
+    // {
+    //     $date = $this->created_at;
+        
+    //     return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('Y-m-d');
+    // }
+   
+    
 }
