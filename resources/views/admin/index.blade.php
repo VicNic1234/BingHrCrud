@@ -192,7 +192,7 @@
             function viewForEdit(elem)
                 {
                     $.ajax({
-                        url:`{{route('admin.delete-leads')}}`,
+                        url:``,
                         type: 'GET',
                         dataType: 'JSON',
                         data: { id:id.getAttribute('data-id') },

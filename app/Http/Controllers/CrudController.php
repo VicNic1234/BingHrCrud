@@ -93,4 +93,8 @@ class CrudController extends Controller
         }
         
     }
+
+    // public function viewEdit(){
+    //     dd();
+    // }
 }
