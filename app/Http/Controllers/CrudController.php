@@ -94,7 +94,12 @@ class CrudController extends Controller
         
     }
 
-    // public function viewEdit(){
-    //     dd();
-    // }
+    public function viewEdit($id){
+        // dd();
+        $user = User::find($id);
+
+	    return response()->json([
+	      'data' => $user
+	    ]);
+    }
 }

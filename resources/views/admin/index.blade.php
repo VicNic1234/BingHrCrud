@@ -36,13 +36,15 @@
                                         <td>System Architect</td>
                                         <td>{{  date('F d, Y h:i:s a',strtotime($user->created_at))}}</td>
                                         <td>{{ $user->role_type }}</td>
-                                        <td><a href="#" class="action-icon edit-user" data-id="${index}"
-                                            data-toggle="modal" data-target=".update-user">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 edit edit-svg"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+                                        <td>
+                                            <a href="#" class="action-icon edit-user"   data-id="{{ $user->id }}" onclick="editID(this);"
+                                                data-toggle="modal" data-target="#update-user">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 edit edit-svg"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
                                             </a>
-                                        <a href="#" class="action-icon delete-user" data-id="{{ $user->id }}" onclick="deleteID(this);"  data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                            <a href="#" class="action-icon delete-user" data-id="{{ $user->id }}" onclick="deleteID(this);"  data-bs-toggle="modal" data-bs-target="#deleteModal">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2  delete-multiple"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-                                        </a></td>
+                                            </a>
+                                        </td>
                                        
                                     </tr>
                                 @endforeach
@@ -66,7 +68,6 @@
         <div class="modal-body">
             <div class="card">
                
-                <div class="card-header"><h3 class="card-title">Custom Validation</h3></div>
                 <div class="card-body">
                     <form class="row g-3 needs-validation" novalidate="" _lpchecked="1" method="POST" action="{{route('user.add.user')}}">
                         @csrf
@@ -142,7 +143,7 @@
     </div>
   </div>
 
-  <!-- Delte Modal -->
+<!-- Delte Modal -->
 <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteModaldropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -164,6 +165,92 @@
       </div>
     </div>
 </div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="update-user" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="card">
+               
+                <div class="card-body">
+                    <form class="row g-3 needs-validation" novalidate="" _lpchecked="1" method="POST" action="{{route('user.add.user')}}">
+                        @csrf
+                        <div class="col-md-12">
+                            <label for="validationCustom01" class="form-label">Employe ID</label>
+                            <input  type="text" class="form-control" id="validationCustom01" name="employe_id" placeholder="bing001" required=""/>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label for="validationCustom02" class="form-label">First name</label> 
+                            <input type="text" class="form-control" id="validationCustom02" name="first_name" placeholder="Otto" required="" />
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="validationCustom02" class="form-label">Last name</label> 
+                            <input type="text" class="form-control" id="validationCustom02" name="last_name" placeholder="Ottolast" required="" />
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="validationCustomUsername" class="form-label">Email ID</label>
+                            <div class="input-group has-validation">
+                                <span class="input-group-text" id="inputGroupPrepend">@</span> 
+                                    <input type="text" class="form-control" id="validationCustomUsername" name="email" aria-describedby="inputGroupPrepend" required="" />
+                                <div class="invalid-feedback">Please enter valid email.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="validationCustomUsername" class="form-label">Mobile no</label>
+                            <div class="input-group has-validation">
+                                 <input type="text" class="form-control" id="validationCustomUsername"  name="mobile_no" aria-describedby="inputGroupPrepend" required="" />
+                                <div class="invalid-feedback">Please enter mobile no.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="validationCustomUsername" class="form-label">Select role type</label>
+                            <div class="input-group has-validation">
+                                <select class="form-select border" id="validationCustom04"  name="role_type" required="">
+                                    <option selected="" disabled="" value="">Choose...</option>
+                                    <option>CEO</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="validationCustom03" class="form-label">username</label> 
+                            <input type="text" class="form-control" id="validationCustom03" name="username" required="" />
+                            <div class="invalid-feedback">Please provide a valid city.</div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="validationCustom04" class="form-label">password</label>
+                            <input type="password" class="form-control" id="validationCustom03" name="password" required="" />
+                            <div class="invalid-feedback">Please enter password.</div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="validationCustom04" class="form-label">confirm password</label>
+                            <input type="password" class="form-control" id="validationCustom03" name="password_confirmation" required="" />
+                            <div class="invalid-feedback">Please enter password.</div>
+                        </div>
+                        <div class="col-12">
+                            <p>module permission</p>
+                        </div>                    
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Add user</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+                </form>
+            </div>
+            
+        </div>
+        
+      </div>
+    </div>
+  </div>
 @endsection
 
 @section('scripts')
@@ -189,10 +276,12 @@
             }
         </script>
         <script type="text/javascript">
-            function viewForEdit(elem)
+            function editID(elem)
+           
                 {
+                    var check = $(elem).attr('data-id');
                     $.ajax({
-                        url:``,
+                        url:`{{route('user.view.user')}}` + '/' + check;
                         type: 'GET',
                         dataType: 'JSON',
                         data: { id:id.getAttribute('data-id') },
