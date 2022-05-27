@@ -33,7 +33,7 @@
                                 @foreach($users as $user)
                                     <tr>
                                         <td>{{ $user->first_name }} {{ $user->last_name }}</td>
-                                        <td>System Architect</td>
+                                        <td>Super Admin</td>
                                         <td>{{  date('F d, Y h:i:s a',strtotime($user->created_at))}}</td>
                                         <td>{{ $user->role_type }}</td>
                                         <td>
